@@ -11,13 +11,31 @@
     button {
       font-size: 20px;
       padding: 10px 20px;
+      margin: 20px;
     }
   </style>
+  <script>
+    function launchNativeDeepLinkActivity() {
+      if (typeof AndroidBridge !== 'undefined' && AndroidBridge.openDeepLinkActivity) {
+        AndroidBridge.openDeepLinkActivity();
+      } else {
+        alert("AndroidBridge not available.");
+      }
+    }
+  </script>
 </head>
 <body>
-  <h2>Click to Open Deep Link</h2>
+  <h2>WebView Deep Link Trigger Test</h2>
+
   <button onclick="window.location.href='https://arpit013.github.io/deep-link-test/deeplink/test1'">
-  Open Android TV App via Deep Link
+    Open Android App via Deep Link (Browser-Based)
   </button>
+
+  <br/><br/>
+
+  <button onclick="launchNativeDeepLinkActivity()">
+    Open DeepLinkActivity via AndroidBridge (WebView-Only)
+  </button>
+
 </body>
 </html>
